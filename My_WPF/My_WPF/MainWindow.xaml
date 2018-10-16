@@ -1,0 +1,45 @@
+﻿<Window x:Class="My_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:My_WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        
+            <ListView Name="lvEmployee"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lvEmployee_SelectionChanged" MaxWidth="200" MaxHeight="200" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Работник</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+        
+        <StackPanel Margin="0,0,0.2,0" Grid.RowSpan="1" Grid.Row="1">
+            <Label Content="ID" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Имя" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Возраст" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbAge" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Зарплата" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbName_Salary" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Name="btnAddEmp" Margin="10"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" >Добавить сотрудника</Button>
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>
