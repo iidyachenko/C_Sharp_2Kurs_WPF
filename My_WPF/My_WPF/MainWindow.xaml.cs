@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 
 namespace My_WPF
 {
+    
+   
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -23,6 +25,8 @@ namespace My_WPF
     {
         ObservableCollection<Employee> itemsEmp = new ObservableCollection<Employee>();
         ObservableCollection<Department> itemsDep = new ObservableCollection<Department>();
+
+     
 
         /// <summary>
         /// Заполнение сотрудников базовыми значениями
@@ -45,18 +49,31 @@ namespace My_WPF
             lvDepartment.ItemsSource = itemsDep;
         }
 
+        public void FillEmpDep()
+        {
+            var result = from Emp in itemsEmp
+                         join Dep in itemsDep on Emp.DepartmentID equals Dep.Id
+                         select new { Emp = Emp.Name, Dep = Dep.Name };
+
+            lvEmpDep.ItemsSource = result;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
             FillListEmp();
             FillListDep();
+            //Связывание двух списков
+            FillEmpDep();
+
+
         }
 
-  
+        
 
         private void lvEmployee_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            
+ 
         }
 
         private void btnAddEmp_Click(object sender, RoutedEventArgs e)
