@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:My_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="58*"/>
         </Grid.ColumnDefinitions>
         
             <ListView Name="lvEmployee"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lvEmployee_SelectionChanged" MaxWidth="200" MaxHeight="200" >
@@ -26,20 +26,39 @@
                 </ListView.View>
 
             </ListView>
-        
-        <StackPanel Margin="0,0,0.2,0" Grid.RowSpan="1" Grid.Row="1">
+
+        <StackPanel DataContext="{Binding ElementName=lvEmployee, Path=SelectedItem}" Margin="0,0,0.2,0" Grid.RowSpan="1" Grid.Row="1">
             <Label Content="ID" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbID" Grid.Column="1" Text="{Binding Path=Id}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Имя" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbName" Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Возраст" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbAge" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbAge" Grid.Column="1" Text="{Binding Path=Age}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Код Департамента" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding Path=DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName_Salary" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button Name="btnAddEmp" Margin="10"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" >Добавить сотрудника</Button>
+            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Name="btnAddEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" >Добавить нового сотрудника</Button>
+            <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnDelEmp_Click" >Удалить выбранного сотрудника</Button>
 
         </StackPanel>
+        <ListView x:Name="lvDepartment"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lvEmployee_SelectionChanged" MaxWidth="200" MaxHeight="200" Grid.ColumnSpan="1" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Департамент"/>
+                </GridView>
+            </ListView.View>
 
+        </ListView>
+
+        <StackPanel Margin="0,0,0.2,0" Grid.Row="1" Grid.Column="1" DataContext="{Binding ElementName=lvDepartment, Path=SelectedItem}">
+            <Label Content="ID" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbID_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Id}" RenderTransformOrigin="-1.142,1.13"/>
+            <Label Content="Имя" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbName_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Path=Name}" Width="120"/>
+            <Button Name="btnAddDep" Margin="5"  VerticalAlignment="Bottom" Click="btnAddDep_Click" >Добавить департамент</Button>
+            <Button Name="btnDelDep" Margin="5"  VerticalAlignment="Bottom" Click="btnDelDep_Click" >Удалить департамент</Button>
+        </StackPanel>
 
     </Grid>
 </Window>
