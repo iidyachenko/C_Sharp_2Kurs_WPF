@@ -28,6 +28,7 @@ namespace My_WPF
         {
             MainWindow mainWindow = Owner as MainWindow; 
             mainWindow.itemsEmp.Add(new Employee() { Id = Convert.ToInt32(tbID.Text), Name = tbName.Text, Age = Convert.ToInt32(tbAge.Text), DepartmentID = Convert.ToInt32(tbIdDep.Text), Salary = Convert.ToInt32(tbName_Salary.Text) });
+            mainWindow.FillEmpDep();
         }
     }
 }
