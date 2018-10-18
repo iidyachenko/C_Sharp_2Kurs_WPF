@@ -38,7 +38,7 @@
             <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding Path=DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button Name="btnAddEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" >Добавить нового сотрудника</Button>
+            <Button Name="btnAddNewEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewEmp_Click" >Добавить нового сотрудника</Button>
             <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnDelEmp_Click" >Удалить выбранного сотрудника</Button>
 
         </StackPanel>
@@ -56,13 +56,14 @@
             <TextBox x:Name="tbID_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Id}" RenderTransformOrigin="-1.142,1.13"/>
             <Label Content="Имя" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Path=Name}" Width="120"/>
-            <Button Name="btnAddDep" Margin="5"  VerticalAlignment="Bottom" Click="btnAddDep_Click" >Добавить департамент</Button>
+            <Button Name="btnAddNewDep" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewDep_Click" >Добавить департамент</Button>
             <Button Name="btnDelDep" Margin="5"  VerticalAlignment="Bottom" Click="btnDelDep_Click" >Удалить департамент</Button>
         </StackPanel>
         <ListView x:Name="lvEmpDep"  Grid.Column="2" HorizontalAlignment="Stretch"   VerticalAlignment="Stretch" Margin="5.8,0,0,0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Emp}" Header="Работник"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Dep}" Header="Департамент"/>
                 </GridView>
             </ListView.View>
         </ListView>

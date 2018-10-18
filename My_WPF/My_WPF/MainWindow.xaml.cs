@@ -23,8 +23,8 @@ namespace My_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<Employee> itemsEmp = new ObservableCollection<Employee>();
-        ObservableCollection<Department> itemsDep = new ObservableCollection<Department>();
+        public ObservableCollection<Employee> itemsEmp = new ObservableCollection<Employee>();
+        public ObservableCollection<Department> itemsDep = new ObservableCollection<Department>();
 
      
 
@@ -65,27 +65,23 @@ namespace My_WPF
             FillListDep();
             //Связывание двух списков
             FillEmpDep();
-
-
+           
         }
 
-        
 
         private void lvEmployee_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
- 
+            
         }
 
-        private void btnAddEmp_Click(object sender, RoutedEventArgs e)
+        private void btnAddNewEmp_Click(object sender, RoutedEventArgs e)
         {
-            itemsEmp.Add(new Employee() { Id = Convert.ToInt32(tbID.Text), Name = tbName.Text, Age = Convert.ToInt32(tbAge.Text), DepartmentID = Convert.ToInt32(tbIdDep.Text), Salary = Convert.ToInt32(tbName_Salary.Text) });
+            AddNewEmp WinEmp = new AddNewEmp();
+            WinEmp.Owner = this;
+            WinEmp.Show();
         }
 
 
-        private void btnAddDep_Click(object sender, RoutedEventArgs e)
-        {
-            itemsDep.Add(new Department() { Id = Convert.ToInt32(tbID_Dep.Text), Name = tbName_Dep.Text });
-        }
 
         private void btnDelEmp_Click(object sender, RoutedEventArgs e)
         {
@@ -96,5 +92,14 @@ namespace My_WPF
         {
             itemsDep.Remove((Department)lvDepartment.SelectedItem);
         }
+
+        private void btnAddNewDep_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewDep WinDep = new AddNewDep();
+            WinDep.Owner = this;
+            WinDep.Show();
+
+        }
+
     }
 }

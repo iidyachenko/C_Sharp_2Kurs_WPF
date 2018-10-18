@@ -1,0 +1,26 @@
+﻿<Window x:Class="My_WPF.AddNewEmp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:My_WPF"
+        mc:Ignorable="d"
+        Title="Добавить нового сотрудника" Height="310" Width="200">
+    <Grid Margin="0,0,0,0">
+        <StackPanel DataContext="{Binding SelectedItem, ElementName=lvEmployee}" Margin="0,0,0,0" Grid.RowSpan="1">
+            <Label Content="ID" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbID" Grid.Column="1" Text="{Binding Id}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Имя" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbName" Grid.Column="1" Text="{Binding Name}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Возраст" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbAge" Grid.Column="1" Text="{Binding Age}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Код Департамента" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Зарплата" Margin="0,0,0.2,0"/>
+            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="btnAddEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" Content="Добавить нового сотрудника" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>
