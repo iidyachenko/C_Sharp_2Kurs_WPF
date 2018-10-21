@@ -18,7 +18,7 @@
             <ColumnDefinition Width="58*"/>
         </Grid.ColumnDefinitions>
         
-            <ListView Name="lvEmployee"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lvEmployee_SelectionChanged" >
+            <ListView Name="lvEmployee"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Работник</GridViewColumn>
@@ -39,10 +39,10 @@
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Name="btnAddNewEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewEmp_Click" >Добавить нового сотрудника</Button>
-            <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnDelEmp_Click" >Удалить выбранного сотрудника</Button>
+            <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" >Удалить выбранного сотрудника</Button>
 
         </StackPanel>
-        <ListView x:Name="lvDepartment"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" SelectionChanged="lvEmployee_SelectionChanged"  Grid.ColumnSpan="1" Grid.Column="1">
+        <ListView x:Name="lvDepartment"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.ColumnSpan="1" Grid.Column="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Департамент"/>
@@ -57,7 +57,7 @@
             <Label Content="Имя" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Path=Name}" Width="120"/>
             <Button Name="btnAddNewDep" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewDep_Click" >Добавить департамент</Button>
-            <Button Name="btnDelDep" Margin="5"  VerticalAlignment="Bottom" Click="btnDelDep_Click" >Удалить департамент</Button>
+            <Button Name="btnDelDep" Margin="5"  VerticalAlignment="Bottom" >Удалить департамент</Button>
         </StackPanel>
         <ListView x:Name="lvEmpDep"  Grid.Column="2" HorizontalAlignment="Stretch"   VerticalAlignment="Stretch" Margin="5.8,0,0,0">
             <ListView.View>

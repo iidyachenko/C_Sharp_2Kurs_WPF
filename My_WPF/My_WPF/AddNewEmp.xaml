@@ -18,7 +18,7 @@
             <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="btnAddEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddEmp_Click" Content="Добавить нового сотрудника" />
+            <Button x:Name="btnAddEmp" Margin="5"  VerticalAlignment="Bottom" Content="Добавить нового сотрудника" />
 
         </StackPanel>
 

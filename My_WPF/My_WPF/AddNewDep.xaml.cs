@@ -20,17 +20,13 @@ namespace My_WPF
     /// </summary>
     public partial class AddNewDep : Window
     {
+        Presenter P;
+
         public AddNewDep()
         {
             InitializeComponent();
-        }
-
-        public event EventHandler ButtonClicked;
-
-        private void btnAddDep_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = Owner as MainWindow;
-            mainWindow.itemsDep.Add(new Department() { Id = Convert.ToInt32(tbID_Dep.Text), Name = tbName_Dep.Text });
+            P = new Presenter();
+            btnAddDep.Click += delegate { P.AddNewDep(tbID_Dep.Text, tbName_Dep.Text); };
         }
     }
 }

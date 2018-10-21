@@ -19,16 +19,14 @@ namespace My_WPF
     /// </summary>
     public partial class AddNewEmp : Window
     {
+        Presenter P;
+
         public AddNewEmp()
         {
             InitializeComponent();
+            P = new Presenter();
+            btnAddEmp.Click += delegate { P.AddNewEmp(tbID.Text, tbName.Text, tbAge.Text, tbIdDep.Text, tbName_Salary.Text); };
         }
 
-        private void btnAddEmp_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = Owner as MainWindow; 
-            mainWindow.itemsEmp.Add(new Employee() { Id = Convert.ToInt32(tbID.Text), Name = tbName.Text, Age = Convert.ToInt32(tbAge.Text), DepartmentID = Convert.ToInt32(tbIdDep.Text), Salary = Convert.ToInt32(tbName_Salary.Text) });
-            mainWindow.FillEmpDep();
-        }
     }
 }
