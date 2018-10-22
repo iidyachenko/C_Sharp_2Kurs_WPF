@@ -28,7 +28,6 @@ namespace My_WPF
         public MainWindow()
         {
             InitializeComponent();
-            //Новая версия с MVP
             P = new Presenter();
             lvEmployee.ItemsSource = Database.itemsEmp;
             lvDepartment.ItemsSource = Database.itemsDep;
@@ -36,8 +35,14 @@ namespace My_WPF
 
             btnDelDep.Click += delegate { P.RemoveDep((Department)lvDepartment.SelectedItem); };
             btnDelEmp.Click += delegate { P.RemoveEmp((Employee)lvEmployee.SelectedItem); };
+            btnRefreshEmpDep.Click += delegate { P.FillED(); };
         }
 
+        /// <summary>
+        /// Переход на страницу с добавлением нового работника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddNewEmp_Click(object sender, RoutedEventArgs e)
         {
             AddNewEmp WinEmp = new AddNewEmp();
@@ -45,6 +50,11 @@ namespace My_WPF
             WinEmp.Show();
         }
 
+        /// <summary>
+        /// Переход на страницу с добавлением нового департамента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddNewDep_Click(object sender, RoutedEventArgs e)
         {
             AddNewDep WinDep = new AddNewDep();

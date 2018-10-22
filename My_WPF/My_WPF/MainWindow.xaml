@@ -37,7 +37,7 @@
             <Label Content="Код Департамента" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding Path=DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary, StringFormat={}{0} руб.}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Name="btnAddNewEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewEmp_Click" >Добавить нового сотрудника</Button>
             <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" >Удалить выбранного сотрудника</Button>
 
@@ -67,6 +67,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Name="btnRefreshEmpDep" Content="Обновить" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
