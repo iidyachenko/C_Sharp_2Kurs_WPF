@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,11 @@ namespace My_WPF
     {
         Presenter P;
 
-        public AddNewDep()
+        public AddNewDep(DataRow dataRow)
         {
             InitializeComponent();
             P = new Presenter();
-            btnAddDep.Click += delegate { P.AddNewDep(tbID_Dep.Text, tbName_Dep.Text); };
+            btnAddDep.Click += delegate { P.AddNewDepDB(tbID_Dep.Text, tbName_Dep.Text, dataRow); };
         }
     }
 }

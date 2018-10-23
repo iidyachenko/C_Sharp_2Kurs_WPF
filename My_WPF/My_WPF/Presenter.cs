@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace My_WPF
     class Presenter
     {
         Model M;
+        public DataRow resultRow { get; set; }
 
         /// <summary>
         /// Конструктор презентера
@@ -85,6 +87,14 @@ namespace My_WPF
                 System.Windows.MessageBox.Show("Неверный формат ввода");
             }
                 FillED();
+        }
+
+        public void AddNewDepDB(String ID, String Name, DataRow dataRow)
+        {
+            resultRow = dataRow;
+            resultRow[1] = Name;
+            Database.Depdt.Rows.Add(resultRow);
+            Database.DepAdapter.Update(Database.Depdt);
         }
 
     }

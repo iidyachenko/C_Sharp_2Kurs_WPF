@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,8 +30,8 @@ namespace My_WPF
         {
             InitializeComponent();
             P = new Presenter();
-            lvEmployee.ItemsSource = Database.itemsEmp;
-            lvDepartment.ItemsSource = Database.itemsDep;
+            lvEmployee.ItemsSource = Database.Empdt.DefaultView;
+            lvDepartment.ItemsSource = Database.Depdt.DefaultView;
             lvEmpDep.ItemsSource = Database.itemsEmpDep;
 
             btnDelDep.Click += delegate { P.RemoveDep((Department)lvDepartment.SelectedItem); };
@@ -57,7 +58,8 @@ namespace My_WPF
         /// <param name="e"></param>
         private void btnAddNewDep_Click(object sender, RoutedEventArgs e)
         {
-            AddNewDep WinDep = new AddNewDep();
+            DataRow dataRow = Database.Empdt.NewRow();
+            AddNewDep WinDep = new AddNewDep(dataRow);
             WinDep.Owner = this;
             WinDep.Show();
 
