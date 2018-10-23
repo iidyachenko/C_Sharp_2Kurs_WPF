@@ -19,8 +19,8 @@ namespace My_WPF
         public static ObservableCollection<EmpDep> itemsEmpDep;
 
         public static SqlConnection connection;
-        public static SqlDataAdapter DepAdapter, EmpAdapter;
-        public static DataTable Depdt, Empdt;
+        public static SqlDataAdapter DepAdapter, EmpAdapter, EmpDepAdapter;
+        public static DataTable Depdt, Empdt, EmpDepdt;
 
 
 
@@ -47,6 +47,7 @@ namespace My_WPF
             connection = new SqlConnection(connectionStringBuilder.ConnectionString);
             DepAdapter = new SqlDataAdapter();
             EmpAdapter = new SqlDataAdapter();
+            EmpDepAdapter = new SqlDataAdapter();
 
             //Select command
             SqlCommand command =
@@ -67,17 +68,31 @@ namespace My_WPF
 
             //Insert command
 
-            command = new SqlCommand(@"INSERT INTO Department (Name) 
-                          VALUES (@FIO); SET @Id = @@IDENTITY;",
+            //Департаменты
+            command = new SqlCommand(@"INSERT INTO Department (Id,Name) 
+                          VALUES (@Id, @Name);",
                           connection);
 
+            command.Parameters.Add("@ID", SqlDbType.Int, -1, "Id");
             command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
 
-            SqlParameter param = command.Parameters.Add("@ID", SqlDbType.Int, 0, "Id");
-
-            param.Direction = ParameterDirection.Output;
+            //SqlParameter param = command.Parameters.Add("@ID", SqlDbType.Int, 0, "Id");
+            //param.Direction = ParameterDirection.Output;
 
             DepAdapter.InsertCommand = command;
+
+            //Сотрудники
+            command = new SqlCommand(@"INSERT INTO Employe (Id,Name,Age,Salary,DepartmentID) 
+                          VALUES (@Id, @Name, @Age, @Salary,@DepartmentID);",
+              connection);
+
+            command.Parameters.Add("@ID", SqlDbType.Int, -1, "Id");
+            command.Parameters.Add("@Name", SqlDbType.NVarChar, -1, "Name");
+            command.Parameters.Add("@Age", SqlDbType.Int, -1, "Age");
+            command.Parameters.Add("@Salary", SqlDbType.Real, -1, "Salary");
+            command.Parameters.Add("@DepartmentID", SqlDbType.Int, -1, "DepartmentID");
+
+            EmpAdapter.InsertCommand = command;
         }
 
     }

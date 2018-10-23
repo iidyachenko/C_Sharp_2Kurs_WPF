@@ -46,7 +46,8 @@ namespace My_WPF
         /// <param name="e"></param>
         private void btnAddNewEmp_Click(object sender, RoutedEventArgs e)
         {
-            AddNewEmp WinEmp = new AddNewEmp();
+            DataRow dataRow = Database.Empdt.NewRow();
+            AddNewEmp WinEmp = new AddNewEmp(dataRow);
             WinEmp.Owner = this;
             WinEmp.Show();
         }
@@ -58,7 +59,7 @@ namespace My_WPF
         /// <param name="e"></param>
         private void btnAddNewDep_Click(object sender, RoutedEventArgs e)
         {
-            DataRow dataRow = Database.Empdt.NewRow();
+            DataRow dataRow = Database.Depdt.NewRow();
             AddNewDep WinDep = new AddNewDep(dataRow);
             WinDep.Owner = this;
             WinDep.Show();

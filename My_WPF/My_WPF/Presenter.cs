@@ -89,11 +89,36 @@ namespace My_WPF
                 FillED();
         }
 
+        /// <summary>
+        /// Добавить строки в БД департаментов
+        /// </summary>
+        /// <param name="ID">Номер Департамента</param>
+        /// <param name="Name">Имя департамента</param>
+        /// <param name="dataRow">Пустая строка таблицы департаментов</param>
         public void AddNewDepDB(String ID, String Name, DataRow dataRow)
         {
             resultRow = dataRow;
+            resultRow[0] = ID;
             resultRow[1] = Name;
             Database.Depdt.Rows.Add(resultRow);
+            Database.DepAdapter.Update(Database.Depdt);
+        }
+
+        /// <summary>
+        /// Добавить строки в БД департаментов
+        /// </summary>
+        /// <param name="ID">Номер Департамента</param>
+        /// <param name="Name">Имя департамента</param>
+        /// <param name="dataRow">Пустая строка таблицы департаментов</param>
+        public void AddNewEmpDB(String ID, String Name, String Age, String Salary, String DepartmentID, DataRow dataRow)
+        {
+            resultRow = dataRow;
+            resultRow[0] = ID;
+            resultRow[1] = Name;
+            resultRow[2] = Age;
+            resultRow[3] = Salary;
+            resultRow[4] = DepartmentID;
+            Database.Empdt.Rows.Add(resultRow);
             Database.DepAdapter.Update(Database.Depdt);
         }
 

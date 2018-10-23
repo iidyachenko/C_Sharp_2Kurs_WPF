@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,11 @@ namespace My_WPF
     {
         Presenter P;
 
-        public AddNewEmp()
+        public AddNewEmp(DataRow dataRow)
         {
             InitializeComponent();
             P = new Presenter();
-            btnAddEmp.Click += delegate { P.AddNewEmp(tbID.Text, tbName.Text, tbAge.Text, tbIdDep.Text, tbName_Salary.Text); };
+            btnAddEmp.Click += delegate { P.AddNewEmpDB(tbID.Text, tbName.Text, tbAge.Text, tbIdDep.Text, tbName_Salary.Text, dataRow); };
         }
 
     }
