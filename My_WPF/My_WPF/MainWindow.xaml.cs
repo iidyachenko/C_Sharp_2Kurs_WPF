@@ -32,11 +32,10 @@ namespace My_WPF
             P = new Presenter();
             lvEmployee.ItemsSource = Database.Empdt.DefaultView;
             lvDepartment.ItemsSource = Database.Depdt.DefaultView;
-            lvEmpDep.ItemsSource = Database.itemsEmpDep;
+            lvEmpDep.ItemsSource = Database.EmpDepdt.DefaultView;
 
-            btnDelDep.Click += delegate { P.RemoveDep((Department)lvDepartment.SelectedItem); };
-            btnDelEmp.Click += delegate { P.RemoveEmp((Employee)lvEmployee.SelectedItem); };
-            btnRefreshEmpDep.Click += delegate { P.FillED(); };
+            btnDelDep.Click += delegate { P.RemoveDepDB((DataRowView)lvDepartment.SelectedItem); };
+            btnDelEmp.Click += delegate { P.RemoveEmpDB((DataRowView)lvEmployee.SelectedItem); };
         }
 
         /// <summary>
@@ -49,7 +48,22 @@ namespace My_WPF
             DataRow dataRow = Database.Empdt.NewRow();
             AddNewEmp WinEmp = new AddNewEmp(dataRow);
             WinEmp.Owner = this;
-            WinEmp.Show();
+            WinEmp.btnAddEmp.Visibility = Visibility.Visible;
+            WinEmp.ShowDialog();
+        }
+
+        /// <summary>
+        /// Переход на страницу с редактированием сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditEmp_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRow = (DataRowView)lvEmployee.SelectedItem;
+            AddNewEmp WinEmp = new AddNewEmp(dataRow.Row);
+            WinEmp.Owner = this;
+            WinEmp.btnEditEmp.Visibility = Visibility.Visible;
+            WinEmp.ShowDialog();
         }
 
         /// <summary>
@@ -62,8 +76,24 @@ namespace My_WPF
             DataRow dataRow = Database.Depdt.NewRow();
             AddNewDep WinDep = new AddNewDep(dataRow);
             WinDep.Owner = this;
-            WinDep.Show();
+            WinDep.btnAddDep.Visibility = Visibility.Visible;
+            WinDep.ShowDialog();
 
         }
+
+        /// <summary>
+        /// Переход на страницу с редактированием департамента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditDep_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRow = (DataRowView)lvDepartment.SelectedItem;
+            AddNewDep WinDep = new AddNewDep(dataRow.Row);
+            WinDep.Owner = this;
+            WinDep.btnEditDep.Visibility = Visibility.Visible;
+            WinDep.ShowDialog();
+        }
+
     }
 }

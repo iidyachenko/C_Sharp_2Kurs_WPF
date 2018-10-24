@@ -27,7 +27,9 @@ namespace My_WPF
         {
             InitializeComponent();
             P = new Presenter();
-            btnAddDep.Click += delegate { P.AddNewDepDB(tbID_Dep.Text, tbName_Dep.Text, dataRow); };
+            tbName_Dep.Text = dataRow[1].ToString();
+            btnAddDep.Click += delegate { P.AddNewDepDB(tbName_Dep.Text, dataRow); };
+            btnEditDep.Click += delegate { P.EditDepDB(tbName_Dep.Text, dataRow); };
         }
     }
 }

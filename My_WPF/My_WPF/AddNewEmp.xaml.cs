@@ -25,8 +25,13 @@ namespace My_WPF
         public AddNewEmp(DataRow dataRow)
         {
             InitializeComponent();
+            tbName.Text = dataRow[1].ToString();
+            tbAge.Text = dataRow[2].ToString();
+            tbName_Salary.Text = dataRow[3].ToString();
+            tbIdDep.Text = dataRow[4].ToString();
             P = new Presenter();
-            btnAddEmp.Click += delegate { P.AddNewEmpDB(tbID.Text, tbName.Text, tbAge.Text, tbIdDep.Text, tbName_Salary.Text, dataRow); };
+            btnAddEmp.Click += delegate { P.AddNewEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); };
+            btnEditEmp.Click += delegate { P.EditEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); };
         }
 
     }
