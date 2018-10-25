@@ -20,7 +20,7 @@ namespace My_WPF
     /// </summary>
     public partial class AddNewEmp : Window
     {
-        Presenter P;
+        Model M;
 
         public AddNewEmp(DataRow dataRow)
         {
@@ -29,9 +29,9 @@ namespace My_WPF
             tbAge.Text = dataRow[2].ToString();
             tbName_Salary.Text = dataRow[3].ToString();
             tbIdDep.Text = dataRow[4].ToString();
-            P = new Presenter();
-            btnAddEmp.Click += delegate { P.AddNewEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); };
-            btnEditEmp.Click += delegate { P.EditEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); };
+            M = new Model();
+            btnAddEmp.Click += delegate { M.AddNewEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); this.DialogResult = true; };
+            btnEditEmp.Click += delegate { M.EditEmpDB(tbName.Text, tbAge.Text, tbName_Salary.Text, tbIdDep.Text, dataRow); };
         }
 
     }

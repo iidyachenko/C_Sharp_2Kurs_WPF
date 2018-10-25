@@ -21,15 +21,15 @@ namespace My_WPF
     /// </summary>
     public partial class AddNewDep : Window
     {
-        Presenter P;
+        Model M;
 
         public AddNewDep(DataRow dataRow)
         {
             InitializeComponent();
-            P = new Presenter();
+            M = new Model();
             tbName_Dep.Text = dataRow[1].ToString();
-            btnAddDep.Click += delegate { P.AddNewDepDB(tbName_Dep.Text, dataRow); };
-            btnEditDep.Click += delegate { P.EditDepDB(tbName_Dep.Text, dataRow); };
+            btnAddDep.Click += delegate { M.AddNewDepDB(tbName_Dep.Text, dataRow); this.DialogResult = true; };
+            btnEditDep.Click += delegate { M.EditDepDB(tbName_Dep.Text, dataRow); };
         }
     }
 }

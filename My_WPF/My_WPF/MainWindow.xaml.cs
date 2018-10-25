@@ -24,18 +24,18 @@ namespace My_WPF
     public partial class MainWindow : Window
     {
 
-        Presenter P;
+        Model M;
 
         public MainWindow()
         {
             InitializeComponent();
-            P = new Presenter();
+            M = new Model();
             lvEmployee.ItemsSource = Database.Empdt.DefaultView;
             lvDepartment.ItemsSource = Database.Depdt.DefaultView;
             lvEmpDep.ItemsSource = Database.EmpDepdt.DefaultView;
 
-            btnDelDep.Click += delegate { P.RemoveDepDB((DataRowView)lvDepartment.SelectedItem); };
-            btnDelEmp.Click += delegate { P.RemoveEmpDB((DataRowView)lvEmployee.SelectedItem); };
+            btnDelDep.Click += delegate { M.RemoveDepDB((DataRowView)lvDepartment.SelectedItem); };
+            btnDelEmp.Click += delegate { M.RemoveEmpDB((DataRowView)lvEmployee.SelectedItem); };
         }
 
         /// <summary>

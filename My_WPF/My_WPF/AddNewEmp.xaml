@@ -8,8 +8,6 @@
         Title="Добавить нового сотрудника" Height="337.61" Width="200">
     <Grid Margin="0,0,0,0">
         <StackPanel DataContext="{Binding SelectedItem, ElementName=lvEmployee}" Margin="0,0,-0.4,-29.2" Grid.RowSpan="1">
-            <Label Content="ID" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Имя" Margin="0,0,0.2,0"/>
             <TextBox x:Name="tbName" Grid.Column="1"  HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label Content="Возраст" Margin="0,0,0.2,0"/>
