@@ -29,20 +29,21 @@
 
         <StackPanel DataContext="{Binding ElementName=lvEmployee, Path=SelectedItem}" Margin="0,0,0.2,0" Grid.RowSpan="1" Grid.Row="1">
             <Label Content="ID" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbID" Grid.Column="1" Text="{Binding Path=Id}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbID" Grid.Column="1" Text="{Binding Path=Id}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Имя" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName" Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbName" Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Возраст" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbAge" Grid.Column="1" Text="{Binding Path=Age}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbAge" Grid.Column="1" Text="{Binding Path=Age}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Код Департамента" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding Path=DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbIdDep" Grid.Column="1" Text="{Binding Path=DepartmentID}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Label Content="Зарплата" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary, StringFormat={}{0} руб.}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbName_Salary" Grid.Column="1" Text="{Binding Path=Salary, StringFormat={}{0} руб.}" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
             <Button Name="btnAddNewEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewEmp_Click" >Добавить нового сотрудника</Button>
+            <Button Name="btnEditEmp" Margin="5"  VerticalAlignment="Bottom" Click="btnEditEmp_Click" >Редактировать сотрудника</Button>
             <Button Name="btnDelEmp" Margin="5"  VerticalAlignment="Bottom" >Удалить выбранного сотрудника</Button>
 
         </StackPanel>
-        <ListView x:Name="lvDepartment"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.ColumnSpan="1" Grid.Column="1">
+        <ListView x:Name="lvDepartment"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.ColumnSpan="1" Grid.Column="1" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Департамент"/>
@@ -53,10 +54,11 @@
 
         <StackPanel Margin="0,0,0.2,0" Grid.Row="1" Grid.Column="1" DataContext="{Binding ElementName=lvDepartment, Path=SelectedItem}">
             <Label Content="ID" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbID_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Id}" RenderTransformOrigin="-1.142,1.13"/>
+            <TextBox x:Name="tbID_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Id}" RenderTransformOrigin="-1.142,1.13" IsReadOnly="True"/>
             <Label Content="Имя" Margin="0,0,0.2,0"/>
-            <TextBox x:Name="tbName_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Path=Name}" Width="120"/>
+            <TextBox x:Name="tbName_Dep" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5.8,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding Path=Name}" Width="120" IsReadOnly="True"/>
             <Button Name="btnAddNewDep" Margin="5"  VerticalAlignment="Bottom" Click="btnAddNewDep_Click" >Добавить департамент</Button>
+            <Button Name="btnEditDep" Margin="5"  VerticalAlignment="Bottom" Click="btnEditDep_Click" >Редактировать департамент</Button>
             <Button Name="btnDelDep" Margin="5"  VerticalAlignment="Bottom" >Удалить департамент</Button>
         </StackPanel>
         <ListView x:Name="lvEmpDep"  Grid.Column="2" HorizontalAlignment="Stretch"   VerticalAlignment="Stretch" Margin="5.8,0,0,0">
@@ -67,7 +69,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Name="btnRefreshEmpDep" Content="Обновить" Grid.Column="2" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,61 +10,124 @@ namespace My_WPF
     class Model
     {
 
+        public DataRow resultRow { get; set; }
+        
         /// <summary>
-        /// Удаление департамента
+        /// Добавить строки в БД департаментов
         /// </summary>
-        /// <param name="Dep">Департамент к удалению</param>
-        public void RemoveDep(Department Dep)
+        /// <param name="ID">Номер Департамента</param>
+        /// <param name="Name">Имя департамента</param>
+        /// <param name="dataRow">Пустая строка таблицы департаментов</param>
+        public void AddNewDepDB(String Name, DataRow dataRow)
         {
-            Database.itemsDep.Remove(Dep);
+            resultRow = dataRow;
+            resultRow[1] = Name;
+            Database.Depdt.Rows.Add(resultRow);
+            Database.DepAdapter.Update(Database.Depdt);
+            Database.EmpDepdt.Clear();
+            Database.EmpDepAdapter.Fill(Database.EmpDepdt);
         }
 
         /// <summary>
-        /// Удалению сотрудников
+        /// Изменить строки в БД департаментов
         /// </summary>
-        /// <param name="Emp">Сотрудник к удалению</param>
-        public void RemoveEmp(Employee Emp)
+        /// <param name="ID">Номер Департамента</param>
+        /// <param name="Name">Имя департамента</param>
+        /// <param name="dataRow">Выбранная строка таблицы департаментов</param>
+        public void EditDepDB(String Name, DataRow dataRow)
         {
-            Database.itemsEmp.Remove(Emp);
+            dataRow.BeginEdit();
+            dataRow[1] = Name;
+            dataRow.EndEdit();
+            Database.DepAdapter.Update(Database.Depdt);
+            Database.EmpDepdt.Clear();
+            Database.EmpDepAdapter.Fill(Database.EmpDepdt);
         }
 
         /// <summary>
-        /// Добавление нового сотрудника
+        /// Изменить строки в БД сотрудников
         /// </summary>
-        /// <param name="ID">Идентификатор сотрудника</param>
+        /// <param name="ID">Код сотрудника</param>
         /// <param name="Name">Имя сотрудника</param>
-        /// <param name="Age">Возраст сотрудника</param>
-        /// <param name="DepartmentID">Код департамента</param>
+        /// <param name="Age">Возраст</param>
         /// <param name="Salary">Зарплата</param>
-        public void AddEmp(int ID, String Name, int Age, int DepartmentID, int Salary)
+        /// <param name="DepartmentID">Код департамента</param>
+        /// <param name="dataRow">Строка для изменения</param>
+        public void EditEmpDB(String Name, String Age, String Salary, String DepartmentID, DataRow dataRow)
         {
-            Database.itemsEmp.Add(new Employee() { Id = ID, Name = Name, Age = Age, DepartmentID = DepartmentID, Salary = Salary });
-        }
-
-        /// <summary>
-        /// Создание нового департмента
-        /// </summary>
-        /// <param name="ID">Код департамента</param>
-        /// <param name="Name">Название департамента</param>
-        public void AddDep(int ID, String Name)
-        {
-            Database.itemsDep.Add(new Department() { Id = ID, Name = Name});
-        }
-
-        /// <summary>
-        /// Заполнение таблицы связи сотрудника и департамента
-        /// </summary>
-        public  void FillEmpDep()
-        {
-            var result = from Emp in Database.itemsEmp
-                         join Dep in Database.itemsDep on Emp.DepartmentID equals Dep.Id
-                         select new { Emp = Emp.Name, Dep = Dep.Name };
-
-            foreach (var r in result)
+            dataRow.BeginEdit();
+            try
             {
-                
-                Database.itemsEmpDep.Add(new EmpDep() { Emp = r.Emp, Dep = r.Dep });
+                dataRow[1] = Name;
+                dataRow[2] = Age;
+                dataRow[3] = Salary;
+                dataRow[4] = DepartmentID;
+                dataRow.EndEdit();
+                Database.EmpAdapter.Update(Database.Empdt);
+                Database.EmpDepdt.Clear();
+                Database.EmpDepAdapter.Fill(Database.EmpDepdt);
             }
+            catch (ArgumentException)
+            {
+                System.Windows.MessageBox.Show("Неверный формат ввода");
+            }
+        }
+
+        /// <summary>
+        /// Добавить строки в БД сотрудников
+        /// </summary>
+        /// <param name="ID">Код сотрудника</param>
+        /// <param name="Name">Имя сотрудника</param>
+        /// <param name="Age">Возраст</param>
+        /// <param name="Salary">Зарплата</param>
+        /// <param name="DepartmentID">Код департамента</param>
+        /// <param name="dataRow">Строка для вставки</param>
+        public void AddNewEmpDB(String Name, String Age, String Salary, String DepartmentID, DataRow dataRow)
+        {
+            resultRow = dataRow;
+
+            try
+            {
+                resultRow[1] = Name;
+                resultRow[2] = Age;
+                resultRow[3] = Salary;
+                resultRow[4] = DepartmentID;
+                Database.Empdt.Rows.Add(resultRow);
+                Database.EmpAdapter.Update(Database.Empdt);
+                Database.EmpDepdt.Clear();
+                Database.EmpDepAdapter.Fill(Database.EmpDepdt);
+                
+            }
+            catch (ArgumentException)
+            {
+                System.Windows.MessageBox.Show("Неверный формат ввода");
+            }
+            
+        }
+
+        /// <summary>
+        /// Удаление департаментов
+        /// </summary>
+        /// <param name="NewRow">Строка к удалению</param>
+        public void RemoveDepDB(DataRowView NewRow)
+        {
+            NewRow.Row.Delete();
+            Database.DepAdapter.Update(Database.Depdt);
+            Database.EmpDepdt.Clear();
+            Database.EmpDepAdapter.Fill(Database.EmpDepdt);
+        }
+
+
+        /// <summary>
+        /// Удаление сотрудников
+        /// </summary>
+        /// <param name="NewRow">Строка к удалению</param>
+        public void RemoveEmpDB(DataRowView NewRow)
+        {
+            NewRow.Row.Delete();
+            Database.EmpAdapter.Update(Database.Empdt);
+            Database.EmpDepdt.Clear();
+            Database.EmpDepAdapter.Fill(Database.EmpDepdt);
         }
     }
 }
